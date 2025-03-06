@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
 
   resources :organizations do
+    resources :projects
     resources :memberships, module: :organizations, except: %i[show]
     resource :transfer, module: :organizations, only: %i[show update]
     resources :inboxes, module: :organizations

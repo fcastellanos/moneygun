@@ -1,5 +1,8 @@
 <div id="<%= dom_id membership %>" class="border p-4 rounded-lg flex justify-between items-center">
   <div class="">
+    <div class="text-lg font-bold">
+      <%= "#{membership.user.first_name} #{membership.user.last_name}" %>
+    </div>
     <div class="">
       <%= membership.user.email %>
     </div>

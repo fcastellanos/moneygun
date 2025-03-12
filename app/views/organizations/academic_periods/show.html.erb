@@ -5,17 +5,20 @@
     <%= link_to "Edit Academic Period", [ :edit, @organization, @academic_period ], class: "btn btn-primary" if policy(@organization.academic_periods.new).edit? %>
     <%= link_to "Back to Academic Periods", [ @organization, :academic_periods ], class: "btn btn-secondary" %>
   <% end %>
-
-  <p class="">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= @academic_period.description %>
-  </p>
-  <p class="">
-    <strong class="block font-medium mb-1">Start Date:</strong>
-    <%= @academic_period.start_date %>
-  </p>
-  <p class="">
-    <strong class="block font-medium mb-1">End Date:</strong>
-    <%= @academic_period.end_date %>
-  </p>
+  <div class="flex mb-4 gap-4">
+    <div class="">
+      <div class="font-bold text-xl">Start Date</div>
+      <div class=""><%= @academic_period.start_date %></div>
+    </div>
+    <div class="">
+      <div class="font-bold text-xl">End Date</div>
+      <div class=""><%= @academic_period.end_date %></div>
+    </div>
+  </div>
+  <div class="">
+    <div class="font-bold text-xl">Description</div>
+    <div>
+      <%= @academic_period.description %>
+    </div>
+  </div>
 <% end %>

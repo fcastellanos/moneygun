@@ -1,10 +1,21 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title, "Academic Periods" %>
 
-<p>
-  <b>Name:</b>
-  <%= @academic_period.name %>
-</p>
+<%= render PageComponent.new(title: "#{@academic_period.name}") do |component| %>
+  <% component.with_action_list do %>
+    <%= link_to "Edit Academic Period", [ :edit, @organization, @academic_period ], class: "btn btn-primary" if policy(@organization.academic_periods.new).edit? %>
+    <%= link_to "Back to Academic Periods", [ @organization, :academic_periods ], class: "btn btn-secondary" %>
+  <% end %>
 
-
-<%= link_to 'Edit', edit_organization_academic_period_path(@academic_period.organization, @academic_period) %> |
-<%= link_to 'Back', organization_academic_periods_path(@academic_period.organization) %>
+  <p class="">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= @academic_period.description %>
+  </p>
+  <p class="">
+    <strong class="block font-medium mb-1">Start Date:</strong>
+    <%= @academic_period.start_date %>
+  </p>
+  <p class="">
+    <strong class="block font-medium mb-1">End Date:</strong>
+    <%= @academic_period.end_date %>
+  </p>
+<% end %>

@@ -54,6 +54,6 @@ class Organizations::AcademicPeriodsController < Organizations::BaseController
 
     # Only allow a trusted parameter "white list" through.
     def academic_period_params
-      params.require(:academic_period).permit(:name)
+      params.require(:academic_period).permit(:name, :description, :start_date, :end_date)
     end
 end

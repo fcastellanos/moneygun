@@ -13,7 +13,8 @@ class Organizations::MembershipsController < Organizations::BaseController
 
   def create
     authorize @organization.memberships.new
-    @form = MembershipInvitation.new(email: params.dig(:membership_invitation, :email), role: params.dig(:membership_invitation, :role), organization: @organization, inviter: current_user)
+    new_params = membership_invitation_params.merge(organization: @organization, inviter: current_user)
+    @form = MembershipInvitation.new(new_params)
 
     if @form.save
       redirect_to organization_memberships_path(@organization), notice: "#{@form.email} invited!"
@@ -54,5 +55,9 @@ class Organizations::MembershipsController < Organizations::BaseController
 
   def membership_params
     params.require(:membership).permit(:role)
+  end
+
+  def membership_invitation_params
+    params.require(:membership_invitation).permit(:email, :role, :first_name, :last_name)
   end
 end

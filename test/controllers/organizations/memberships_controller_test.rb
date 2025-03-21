@@ -50,7 +50,7 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_difference("User.count") do
       assert_no_difference("Membership.count") do
-        post organization_memberships_url(@organization)
+        post organization_memberships_url(@organization, params: { membership_invitation: { email: nil } })
       end
     end
     assert_response :unprocessable_entity
@@ -74,7 +74,8 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     # success
     assert_difference("User.count") do
       assert_difference("Membership.count") do
-        post organization_memberships_url(@organization), params: { membership_invitation: { email:, role: "member" } }
+        invitation_params = { email:, role: "member", first_name: "Julia", last_name: "Superails" }
+        post organization_memberships_url(@organization), params: { membership_invitation: invitation_params }
       end
     end
 

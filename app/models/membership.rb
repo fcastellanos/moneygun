@@ -2,6 +2,8 @@ class Membership < ApplicationRecord
   belongs_to :organization
   belongs_to :user
 
+  has_one :student, dependent: :destroy
+
   enum :role, { member: "member", admin: "admin" }
 
   validates_uniqueness_of :user_id, scope: :organization_id

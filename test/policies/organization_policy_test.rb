@@ -9,7 +9,7 @@ class OrganizationPolicyTest < ActiveSupport::TestCase
 
   def test_show
     assert OrganizationPolicy.new(@user, @organization).show?
-    @organization.users.delete(@user)
+    @user.destroy
     assert_not OrganizationPolicy.new(@user, @organization).show?
   end
 

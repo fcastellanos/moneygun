@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :memberships, module: :organizations, except: %i[show]
     resource :transfer, module: :organizations, only: %i[show update]
     resources :inboxes, module: :organizations
+    resources :students, module: :organizations
   end
 
   get "pricing", to: "static#pricing"

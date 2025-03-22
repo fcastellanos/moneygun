@@ -30,3 +30,11 @@
     Academic Periods
   </div>
 <% end %>
+<%= active_link_to organization_students_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
+  <div>
+    <%= inline_svg_tag "svg/user-group.svg", class: "size-5" %>
+  </div>
+  <div>
+    Students
+  </div>
+<% end %>

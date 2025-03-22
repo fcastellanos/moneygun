@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_012751) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_12_050706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -81,6 +81,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_012751) do
     t.index ["owner_id"], name: "index_organizations_on_owner_id"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.bigint "membership_id", null: false
+    t.string "id_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membership_id"], name: "index_students_on_membership_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,4 +121,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_012751) do
   add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "users"
   add_foreign_key "organizations", "users", column: "owner_id"
+  add_foreign_key "students", "memberships"
 end

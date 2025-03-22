@@ -6,9 +6,15 @@
 #
 one:
   email: yaro@superails.com
+  first_name: Yaro
+  last_name: Jansen
 
 two:
   email: hello@superails.com
+  first_name: Hello
+  last_name: World
 
 unassociated:
   email: unassociated@superails.com
+  first_name: Unassociated
+  last_name: User

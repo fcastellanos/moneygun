@@ -2,6 +2,7 @@ class Organization < ApplicationRecord
   has_many :academic_periods, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
+  has_many :students, through: :memberships
   belongs_to :owner, class_name: "User"
 
   include Transfer

@@ -1,5 +1,5 @@
 class Organizations::CoursesController < Organizations::BaseController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [ :show, :edit, :update, :destroy ]
 
   # GET organizations/1/courses
   def index
@@ -24,18 +24,18 @@ class Organizations::CoursesController < Organizations::BaseController
     @course = @organization.courses.build(course_params)
 
     if @course.save
-      redirect_to([@course.organization, @course], notice: 'Course was successfully created.')
+      redirect_to([ @course.organization, @course ], notice: "Course was successfully created.")
     else
-      render action: 'new', status: :unprocessable_entity
+      render action: "new", status: :unprocessable_entity
     end
   end
 
   # PUT organizations/1/courses/1
   def update
     if @course.update(course_params)
-      redirect_to([@course.organization, @course], notice: 'Course was successfully updated.')
+      redirect_to([ @course.organization, @course ], notice: "Course was successfully updated.")
     else
-      render action: 'edit', status: :unprocessable_entity
+      render action: "edit", status: :unprocessable_entity
     end
   end
 

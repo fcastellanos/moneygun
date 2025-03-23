@@ -2,7 +2,7 @@ class StudentInvitation
   include UserInvitation
 
   attr_accessor :id_number
-  
+
   validates :id_number, presence: true
 
   def save
@@ -23,7 +23,7 @@ class StudentInvitation
 
       student = create_student(membership)
 
-      raise ActiveRecord::Rollback unless student&.valid? 
+      raise ActiveRecord::Rollback unless student&.valid?
     end
 
     student
@@ -32,7 +32,7 @@ class StudentInvitation
   private
 
   def find_or_create_membership(user)
-    user.memberships.find_by(organization: organization) || 
+    user.memberships.find_by(organization: organization) ||
       user.memberships.create(organization: organization, role: Membership.roles[:member])
   end
 

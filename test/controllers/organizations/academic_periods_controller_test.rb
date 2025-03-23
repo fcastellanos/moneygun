@@ -19,7 +19,7 @@ class AcademicPeriodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create academic period" do
-    assert_difference('AcademicPeriod.count') do
+    assert_difference("AcademicPeriod.count") do
       post organization_academic_periods_url(@organization), params: { academic_period: { name: "New Name" } }
     end
 
@@ -42,7 +42,7 @@ class AcademicPeriodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy academic period" do
-    assert_difference('AcademicPeriod.count', -1) do
+    assert_difference("AcademicPeriod.count", -1) do
       delete organization_academic_period_url(@organization, @academic_period)
     end
 

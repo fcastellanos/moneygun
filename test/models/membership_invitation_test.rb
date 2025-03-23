@@ -3,7 +3,7 @@ require "test_helper"
 class MembershipInvitationTest < ActiveSupport::TestCase
   include Rails.application.routes.url_helpers
   include Rails.application.routes.mounted_helpers
-  
+
   def setup
     @organization = organizations(:one)
     @inviter = users(:one)

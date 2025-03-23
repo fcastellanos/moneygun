@@ -1,5 +1,5 @@
 class Organizations::AcademicPeriodsController < Organizations::BaseController
-  before_action :set_academic_period, only: [:show, :edit, :update, :destroy]
+  before_action :set_academic_period, only: [ :show, :edit, :update, :destroy ]
 
   # GET organizations/1/academic_periods
   def index
@@ -24,18 +24,18 @@ class Organizations::AcademicPeriodsController < Organizations::BaseController
     @academic_period = @organization.academic_periods.build(academic_period_params)
 
     if @academic_period.save
-      redirect_to([@academic_period.organization, @academic_period], notice: 'Academic Period was successfully created.')
+      redirect_to([ @academic_period.organization, @academic_period ], notice: "Academic Period was successfully created.")
     else
-      render action: 'new', status: :unprocessable_entity
+      render action: "new", status: :unprocessable_entity
     end
   end
 
   # PUT organizations/1/academic_periods/1
   def update
     if @academic_period.update(academic_period_params)
-      redirect_to([@academic_period.organization, @academic_period], notice: 'Academic Period was successfully updated.')
+      redirect_to([ @academic_period.organization, @academic_period ], notice: "Academic Period was successfully updated.")
     else
-      render action: 'edit', status: :unprocessable_entity
+      render action: "edit", status: :unprocessable_entity
     end
   end
 

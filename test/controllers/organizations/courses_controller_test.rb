@@ -21,8 +21,8 @@ class Organizations::CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create course" do
-    assert_difference('Course.count') do
-      post organization_courses_url(@organization), params: { course: { name: 'New Course', description: 'Course description', category: "geography" } }
+    assert_difference("Course.count") do
+      post organization_courses_url(@organization), params: { course: { name: "New Course", description: "Course description", category: "geography" } }
     end
 
     assert_redirected_to organization_course_url(@organization, Course.last)
@@ -41,17 +41,17 @@ class Organizations::CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update course" do
-    patch organization_course_url(@organization, @course), params: { course: { name: 'Updated Name', description: 'Updated description', category: 'mathematics' } }
+    patch organization_course_url(@organization, @course), params: { course: { name: "Updated Name", description: "Updated description", category: "mathematics" } }
 
     assert_redirected_to organization_course_url(@organization, @course)
 
     @course.reload
-    
-    assert_equal 'Updated Name', @course.name
+
+    assert_equal "Updated Name", @course.name
   end
 
   test "should destroy course" do
-    assert_difference('Course.count', -1) do
+    assert_difference("Course.count", -1) do
       delete organization_course_url(@organization, @course)
     end
 

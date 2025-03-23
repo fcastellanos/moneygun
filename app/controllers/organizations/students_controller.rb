@@ -1,6 +1,6 @@
 class Organizations::StudentsController < Organizations::BaseController
   # before_action :set_membership, only: [:show, :edit, :update, :destroy]
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [ :show, :edit, :update, :destroy ]
 
   # GET memberships/1/students
   def index
@@ -19,10 +19,10 @@ class Organizations::StudentsController < Organizations::BaseController
   # GET memberships/1/students/1/edit
   def edit
     @form = StudentInvitation.new(
-      email: @student.user.email, 
-      organization: @organization, 
-      id_number: @student.id_number, 
-      first_name: @student.user.first_name, 
+      email: @student.user.email,
+      organization: @organization,
+      id_number: @student.id_number,
+      first_name: @student.user.first_name,
       last_name: @student.user.last_name
     )
   end
@@ -39,7 +39,7 @@ class Organizations::StudentsController < Organizations::BaseController
     )
 
     if @form.save
-      redirect_to organization_students_path(@organization), notice: 'Student was successfully created.'
+      redirect_to organization_students_path(@organization), notice: "Student was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -56,9 +56,9 @@ class Organizations::StudentsController < Organizations::BaseController
       last_name: params.dig(:student_invitation, :last_name)
     )
     if @form.save
-      redirect_to([@student.membership, @student], notice: 'Student was successfully updated.')
+      redirect_to([ @student.membership, @student ], notice: "Student was successfully updated.")
     else
-      render action: 'edit'
+      render action: "edit"
     end
   end
 

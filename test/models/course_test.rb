@@ -7,7 +7,7 @@ class CourseTest < ActiveSupport::TestCase
 
   test "should not save course without name" do
     course = Course.new
-    
+
     assert_not course.save, "Saved the course without a name"
   end
 
@@ -21,7 +21,7 @@ class CourseTest < ActiveSupport::TestCase
     error = assert_raises(ArgumentError) do
       Course.new(name: "Invalid Course", category: :invalid_category, organization: @organization)
     end
-    
+
     assert_equal "'invalid_category' is not a valid category", error.message
   end
 

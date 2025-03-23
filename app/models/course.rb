@@ -3,5 +3,5 @@ class Course < ApplicationRecord
 
   validates :name, presence: true
 
-  enum :category, [:general, :mathematics, :geography, :programming]
+  enum :category, [ :general, :mathematics, :geography, :programming ]
 end

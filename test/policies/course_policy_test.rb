@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class CoursePolicyTest < ActiveSupport::TestCase
   setup do
@@ -7,75 +7,75 @@ class CoursePolicyTest < ActiveSupport::TestCase
     @course = courses(:one)
   end
 
-  test 'index? allows admin' do
+  test "index? allows admin" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert policy.index?
   end
 
-  test 'index? denies regular user' do
+  test "index? denies regular user" do
     policy = CoursePolicy.new(@regular_membership, @course)
 
     refute policy.index?
   end
 
-  test 'show? allows admin' do
+  test "show? allows admin" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert policy.show?
   end
 
-  test 'show? denies regular user' do
+  test "show? denies regular user" do
     policy = CoursePolicy.new(@regular_membership, @course)
 
     refute policy.show?
   end
 
-  test 'new? delegates to create?' do
+  test "new? delegates to create?" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert_equal policy.new?, policy.create?
   end
 
-  test 'create? allows admin' do
+  test "create? allows admin" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert policy.create?
   end
 
-  test 'create? denies regular user' do
+  test "create? denies regular user" do
     policy = CoursePolicy.new(@regular_membership, @course)
 
     refute policy.create?
   end
 
-  test 'edit? delegates to update?' do
+  test "edit? delegates to update?" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert_equal policy.edit?, policy.update?
   end
 
-  test 'update? allows admin' do
+  test "update? allows admin" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert policy.update?
   end
 
-  test 'update? denies regular user' do
+  test "update? denies regular user" do
     policy = CoursePolicy.new(@regular_membership, @course)
 
     refute policy.update?
   end
 
-  test 'destroy? allows admin' do
+  test "destroy? allows admin" do
     policy = CoursePolicy.new(@admin_membership, @course)
 
     assert policy.destroy?
   end
 
-  test 'destroy? denies regular user' do
+  test "destroy? denies regular user" do
     policy = CoursePolicy.new(@regular_membership, @course)
-    
+
     refute policy.destroy?
   end
 end

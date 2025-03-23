@@ -1,6 +1,6 @@
 class MembershipInvitation
   include UserInvitation
-  
+
   validates :role, presence: true
   validates :role, inclusion: { in: Membership.roles.keys }
 
@@ -9,7 +9,7 @@ class MembershipInvitation
 
     user = find_or_invite_user
     add_extra_info(user)
-    
+
     return false unless user&.valid?
 
     add_user_to_organization(user)

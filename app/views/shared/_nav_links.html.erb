@@ -1,6 +1,6 @@
 <%= active_link_to organization_path(current_organization), active: :exclusive, class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
   <div>
-    <%= inline_svg_tag "svg/question-mark-circle.svg", class: "size-5" %>
+    <%= inline_svg_tag "svg/dashboard-icon.svg", class: "size-5" %>
   </div>
   <div>
     Dashboard
@@ -24,7 +24,7 @@
 <% end %>
 <%= active_link_to organization_academic_periods_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
   <div>
-    <%= inline_svg_tag "svg/list-bullet.svg", class: "size-5" %>
+    <%= inline_svg_tag "svg/academic-period.svg", class: "size-5" %>
   </div>
   <div>
     Academic Periods
@@ -32,7 +32,7 @@
 <% end %>
 <%= active_link_to organization_students_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
   <div>
-    <%= inline_svg_tag "svg/user-group.svg", class: "size-5" %>
+    <%= inline_svg_tag "svg/academic-cap.svg", class: "size-5" %>
   </div>
   <div>
     Students
@@ -40,7 +40,7 @@
 <% end %>
 <%= active_link_to organization_courses_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
   <div>
-    <%= inline_svg_tag "svg/list-bullet.svg", class: "size-5" %>
+    <%= inline_svg_tag "svg/book-course.svg", class: "size-5" %>
   </div>
   <div>
     Courses

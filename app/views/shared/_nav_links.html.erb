@@ -24,7 +24,7 @@
 <% end %>
 <%= active_link_to organization_academic_periods_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
   <div>
-    <%= inline_svg_tag "svg/question-mark-circle.svg", class: "size-5" %>
+    <%= inline_svg_tag "svg/list-bullet.svg", class: "size-5" %>
   </div>
   <div>
     Academic Periods
@@ -36,5 +36,13 @@
   </div>
   <div>
     Students
+  </div>
+<% end %>
+<%= active_link_to organization_courses_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
+  <div>
+    <%= inline_svg_tag "svg/list-bullet.svg", class: "size-5" %>
+  </div>
+  <div>
+    Courses
   </div>
 <% end %>

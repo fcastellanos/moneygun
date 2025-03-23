@@ -1,5 +1,7 @@
 class Organization < ApplicationRecord
+  has_many :courses
   has_many :academic_periods, dependent: :destroy
+  has_many :courses, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :students, through: :memberships

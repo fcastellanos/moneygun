@@ -4,7 +4,6 @@ class Organizations::StudentsController < Organizations::BaseController
 
   # GET memberships/1/students
   def index
-    # @students = @organization.memberships.includes(:student).where.not(student: { membership_id: nil })
     @students = @organization.students.includes(:user)
   end
 
@@ -72,10 +71,6 @@ class Organizations::StudentsController < Organizations::BaseController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_membership
-    #   @membership = Membership.find(params[:membership_id])
-    # end
-
     def set_student
       @student = Student.find(params[:id])
     end

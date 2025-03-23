@@ -1,0 +1,13 @@
+<% content_for :title, "Courses" %>
+
+<%= render PageComponent.new(title: "Courses") do |component| %>
+  <% component.with_action_list do %>
+    <%= link_to "New Course", new_organization_course_path(@organization), class: "btn btn-primary" if policy(@organization.courses.new).new? %>
+  <% end %>
+
+  <div id="courses" class="space-y-4">
+    <% @courses.each do |student| %>
+      <%= render student %>
+    <% end %>
+  </div>
+<% end %>

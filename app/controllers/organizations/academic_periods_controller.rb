@@ -26,7 +26,7 @@ class Organizations::AcademicPeriodsController < Organizations::BaseController
     if @academic_period.save
       redirect_to([@academic_period.organization, @academic_period], notice: 'Academic Period was successfully created.')
     else
-      render action: 'new'
+      render action: 'new', status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,7 @@ class Organizations::AcademicPeriodsController < Organizations::BaseController
     if @academic_period.update(academic_period_params)
       redirect_to([@academic_period.organization, @academic_period], notice: 'Academic Period was successfully updated.')
     else
-      render action: 'edit'
+      render action: 'edit', status: :unprocessable_entity
     end
   end
 

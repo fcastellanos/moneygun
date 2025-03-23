@@ -46,3 +46,11 @@
     Courses
   </div>
 <% end %>
+<%= active_link_to organization_education_levels_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
+  <div>
+    <%= inline_svg_tag "svg/education-level.svg", class: "size-5" %>
+  </div>
+  <div>
+    Education Level
+  </div>
+<% end %>

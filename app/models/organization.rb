@@ -1,4 +1,5 @@
 class Organization < ApplicationRecord
+  has_many :education_levels
   has_many :courses
   has_many :academic_periods, dependent: :destroy
   has_many :courses, dependent: :destroy

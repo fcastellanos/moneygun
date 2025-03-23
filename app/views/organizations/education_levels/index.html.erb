@@ -1,0 +1,13 @@
+<% content_for :title, "Education Levels" %>
+
+<%= render PageComponent.new(title: "Education Levels") do |component| %>
+  <% component.with_action_list do %>
+    <%= link_to "New Education Level", new_organization_education_level_path(@organization), class: "btn btn-primary" if policy(@organization.education_levels.new).new? %>
+  <% end %>
+
+  <div id="education-levels" class="space-y-4">
+    <% @education_levels.each do |education_level| %>
+      <%= render education_level %>
+    <% end %>
+  </div>
+<% end %>

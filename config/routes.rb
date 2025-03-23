@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :inboxes, module: :organizations
     resources :students, module: :organizations
     resources :courses, module: :organizations
+    resources :education_levels, module: :organizations
   end
 
   get "pricing", to: "static#pricing"

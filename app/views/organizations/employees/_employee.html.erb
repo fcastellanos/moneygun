@@ -1,0 +1,18 @@
+<div id="<%= dom_id employee %>" class="border p-4 rounded-lg flex justify-between items-center">
+  <div class="">
+    <div class="text-lg font-bold">
+      <%= "#{employee.user.first_name} #{employee.user.last_name}" %>
+    </div>
+    <div class="">
+      <%= employee.type %>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to "Show", [@organization, employee], class: "btn btn-secondary" %>
+    <%= link_to "Edit", edit_organization_employee_path(@organization, employee), class: "btn btn-secondary" if policy(employee).edit? %>
+    <div class="inline-block">
+      <%= button_to "Remove", organization_employee_path(@organization, employee), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" if policy(employee).destroy? %>
+    </div>
+  </div>
+</div>

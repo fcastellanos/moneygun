@@ -16,6 +16,11 @@ module UserInvitation
     user&.assign_attributes(first_name: first_name, last_name: last_name)
   end
 
+  def find_or_create_membership(user)
+    user.memberships.find_by(organization: organization) ||
+      user.memberships.create(organization: organization, role: Membership.roles[:member])
+  end
+
   def find_or_invite_user
     User.find_by(email: email) || User.invite!({ email:, first_name:, last_name: }, inviter)
   end

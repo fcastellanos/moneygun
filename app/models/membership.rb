@@ -3,6 +3,7 @@ class Membership < ApplicationRecord
   belongs_to :user
 
   has_one :student, dependent: :destroy
+  has_one :employee, dependent: :destroy
 
   enum :role, { member: "member", admin: "admin" }
 

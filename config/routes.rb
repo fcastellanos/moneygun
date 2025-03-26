@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resource :transfer, module: :organizations, only: %i[show update]
     resources :inboxes, module: :organizations
     resources :students, module: :organizations
+    resources :employees, module: :organizations
     resources :courses, module: :organizations
     resources :education_levels, module: :organizations
   end

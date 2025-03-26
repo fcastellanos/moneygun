@@ -31,11 +31,6 @@ class StudentInvitation
 
   private
 
-  def find_or_create_membership(user)
-    user.memberships.find_by(organization: organization) ||
-      user.memberships.create(organization: organization, role: Membership.roles[:member])
-  end
-
   def create_student(membership)
     student = membership.create_student(id_number: id_number)
     errors.add(:base, student.errors.full_messages) unless student.valid?

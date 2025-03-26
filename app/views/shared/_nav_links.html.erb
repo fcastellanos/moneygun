@@ -38,6 +38,14 @@
     Students
   </div>
 <% end %>
+<%= active_link_to organization_employees_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
+  <div>
+    <%= inline_svg_tag "svg/employee-icon.svg", class: "size-5" %>
+  </div>
+  <div>
+    Employees
+  </div>
+<% end %>
 <%= active_link_to organization_courses_path(@organization), class_active: "bg-gray-300", class: "w-full items-center btn btn-transparent" do %>
   <div>
     <%= inline_svg_tag "svg/book-course.svg", class: "size-5" %>

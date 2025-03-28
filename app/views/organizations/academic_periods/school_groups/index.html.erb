@@ -1,0 +1,49 @@
+<h1>Listing school_groups</h1>
+
+<%= link_to 'New School group', new_organization_school_group_path(params[:organization_id]) %>
+
+<table>
+  <tr>
+    <th>
+      Group type
+    </th>
+    <th>
+      Academic period
+    </th>
+    <th>
+      School grade
+    </th>
+    <th>
+      Employee
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @school_groups.each do |school_group| %>
+  <tr>
+    <td>
+      <%= school_group.group_type %>
+    </td>
+    <td>
+      <%= school_group.academic_period %>
+    </td>
+    <td>
+      <%= school_group.school_grade %>
+    </td>
+    <td>
+      <%= school_group.employee %>
+    </td>
+    <td>
+      <%= link_to 'Show', [school_group.organization, school_group] %>
+    </td>
+    <td>
+      <%= link_to 'Edit', edit_organization_school_group_path(school_group.organization, school_group) %>
+    </td>
+    <td>
+      <%= button_to 'Destroy', [school_group.organization, school_group], method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>

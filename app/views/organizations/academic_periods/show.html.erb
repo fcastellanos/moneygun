@@ -26,4 +26,24 @@
       </dl>
     </div>
   </div>
+  <div class="flex justify-between items-center mt-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">School Groups</h3>
+    <%= link_to "New School Group", new_organization_academic_period_school_group_path(@organization, @academic_period), class: "btn btn-primary" if policy(SchoolGroup).new? %>
+  </div>
+  <div class="mt-4">
+    <ul role="list" class="divide-y divide-gray-200">
+      <% @academic_period.school_groups.each do |school_group| %>
+        <li class="py-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-900"><%= school_group.education_level.name %></p>
+            <p class="text-sm text-gray-500"><%= school_group.name %></p>
+            <p class="text-sm text-gray-500"><%= school_group.employee.full_name %></p>
+          </div>
+          <div>
+            <%= link_to "View", [@organization, @academic_period, school_group], class: "btn btn-secondary" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

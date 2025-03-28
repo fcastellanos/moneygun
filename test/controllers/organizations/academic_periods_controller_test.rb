@@ -20,7 +20,8 @@ class AcademicPeriodsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create academic period" do
     assert_difference("AcademicPeriod.count") do
-      post organization_academic_periods_url(@organization), params: { academic_period: { name: "New Name" } }
+      request_params = { academic_period: { name: "New Name", start_date: Date.today - 6.months, end_date: Date.today + 6.months } }
+      post organization_academic_periods_url(@organization), params: request_params
     end
 
     assert_redirected_to organization_academic_period_path(@organization, AcademicPeriod.last)

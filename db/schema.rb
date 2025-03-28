@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_010154) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_27_004209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -108,6 +108,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_010154) do
     t.index ["owner_id"], name: "index_organizations_on_owner_id"
   end
 
+  create_table "school_groups", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.bigint "academic_period_id", null: false
+    t.bigint "education_level_id", null: false
+    t.bigint "employee_id", null: false
+    t.integer "group_type", default: 0, null: false
+    t.integer "grade", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["academic_period_id"], name: "index_school_groups_on_academic_period_id"
+    t.index ["education_level_id"], name: "index_school_groups_on_education_level_id"
+    t.index ["employee_id"], name: "index_school_groups_on_employee_id"
+    t.index ["organization_id", "academic_period_id", "education_level_id", "group_type", "grade"], name: "idx_on_organization_id_academic_period_id_education_2aebee78d4", unique: true
+    t.index ["organization_id"], name: "index_school_groups_on_organization_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.bigint "membership_id", null: false
     t.string "id_number", null: false
@@ -151,5 +167,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_010154) do
   add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "users"
   add_foreign_key "organizations", "users", column: "owner_id"
+  add_foreign_key "school_groups", "academic_periods"
+  add_foreign_key "school_groups", "education_levels"
+  add_foreign_key "school_groups", "employees"
+  add_foreign_key "school_groups", "organizations"
   add_foreign_key "students", "memberships"
 end

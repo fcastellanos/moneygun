@@ -2,7 +2,7 @@
 
 one:
   type: 1
-  membership: one
+  membership: teacher
 
 two:
   type: 1

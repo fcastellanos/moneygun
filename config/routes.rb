@@ -2,7 +2,15 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
 
   resources :organizations do
+    
     scope module: :organizations do
+      resources :academic_periods do
+        resources :school_groups, module: :academic_periods
+      end
+      resources :students
+      resources :employees
+      resources :courses
+      resources :education_levels
       resources :memberships, except: %i[show]
       resource :transfer, only: %i[show update]
       resources :projects

@@ -1,0 +1,13 @@
+<% content_for :title, "Academic Periods" %>
+
+<%= render PageComponent.new(title: "Academic Periods") do |component| %>
+  <% component.with_action_list do %>
+    <%= link_to "New Academic Period", new_organization_academic_period_path(@organization), class: "btn btn-primary" if policy(@organization.academic_periods.new).new? %>
+  <% end %>
+
+  <div id="academic-periods" class="space-y-4">
+    <% @academic_periods.each do |academic_period| %>
+      <%= render academic_period %>
+    <% end %>
+  </div>
+<% end %>

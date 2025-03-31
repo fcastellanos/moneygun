@@ -1,9 +1,6 @@
 class MembershipInvitation
-  include ActiveModel::Model
+  include UserInvitation
 
-  attr_accessor :email, :organization, :inviter, :role
-
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :role, presence: true
   validates :role, inclusion: { in: Membership.roles.keys }
 
@@ -11,16 +8,14 @@ class MembershipInvitation
     return false unless valid?
 
     user = find_or_invite_user
+    add_extra_info(user)
+
     return false unless user&.valid?
 
     add_user_to_organization(user)
   end
 
   private
-
-  def find_or_invite_user
-    User.find_by(email: email) || User.invite!({ email: }, inviter)
-  end
 
   def add_user_to_organization(user)
     membership = user.memberships.find_by(organization: organization)

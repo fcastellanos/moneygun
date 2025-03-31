@@ -1,0 +1,18 @@
+<div id="<%= dom_id course %>" class="border p-4 rounded-lg flex justify-between items-center">
+  <div class="">
+    <div class="text-lg font-bold">
+      <%= "#{course.name}" %>
+    </div>
+    <div class="">
+      <%= course.name %>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to "Show", [@organization, course], class: "btn btn-secondary" %>
+    <%= link_to "Edit", edit_organization_course_path(@organization, course), class: "btn btn-secondary" if policy(course).edit? %>
+    <div class="inline-block">
+      <%= button_to "Remove", organization_course_path(@organization, course), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" if policy(course).destroy? %>
+    </div>
+  </div>
+</div>

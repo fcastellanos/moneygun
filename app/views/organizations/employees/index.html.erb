@@ -1,0 +1,13 @@
+<% content_for :title, "Employees" %>
+
+<%= render PageComponent.new(title: "Employees") do |component| %>
+  <% component.with_action_list do %>
+    <%= link_to "New Employee", new_organization_employee_path(@organization), class: "btn btn-primary" if policy(@organization.employees.new).new? %>
+  <% end %>
+
+  <div id="employees" class="space-y-4">
+    <% @employees.each do |employee| %>
+      <%= render employee %>
+    <% end %>
+  </div>
+<% end %>

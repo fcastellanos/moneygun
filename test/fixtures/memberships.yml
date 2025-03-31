@@ -5,6 +5,11 @@ one:
   user: one
   role: admin
 
+teacher:
+  organization: one
+  user: teacher
+  role: member
+
 two:
   organization: two
   user: two

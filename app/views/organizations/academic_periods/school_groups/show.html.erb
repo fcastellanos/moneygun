@@ -1,0 +1,29 @@
+<% content_for :title, @school_group.name %>
+
+<%= render PageComponent.new(title: "#{@school_group.name} - #{@school_group.education_level.name}") do |component| %>
+  <% component.with_action_list do %>
+    <%= link_to "Back to Academic Period", [ @organization, @academic_period ], class: "btn btn-secondary" %>
+    <%= link_to "Edit School Group", [ :edit, @organization, @academic_period, @school_group ], class: "btn btn-primary" if policy(@organization.school_groups.new).edit? %>
+  <% end %>
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">School Group Information</h3>
+    </div>
+    <div class="border-t border-gray-200">
+      <dl>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Academic Period</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @school_group.academic_period.name %></dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Academic Level</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @school_group.education_level.name %></dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Teacher</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"><%= @school_group.employee.full_name %></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+<% end %>

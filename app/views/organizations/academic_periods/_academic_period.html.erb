@@ -1,0 +1,18 @@
+<div id="<%= dom_id academic_period %>" class="border p-4 rounded-lg flex justify-between items-center">
+  <div class="">
+    <div class="text-lg font-bold">
+      <%= "#{academic_period.name}" %>
+    </div>
+    <div class="">
+      <%= academic_period.description %>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to "Show", [academic_period.organization, academic_period], class: "btn btn-secondary" %>
+    <%= link_to "Edit", edit_organization_academic_period_path(academic_period.organization, academic_period), class: "btn btn-secondary" if policy(academic_period).edit? %>
+    <div class="inline-block">
+      <%= button_to "Remove", organization_academic_period_path(academic_period.organization, academic_period), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" if policy(academic_period).destroy? %>
+    </div>
+  </div>
+</div>

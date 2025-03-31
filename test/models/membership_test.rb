@@ -11,7 +11,7 @@ class MembershipTest < ActiveSupport::TestCase
   test "try_destroy" do
     # does not destroy only admin
     organization = organizations(:one)
-    membership = organization.memberships.first
+    membership = organization.memberships.admin.first
     assert_not membership.try_destroy
 
     # does not destroy only admin

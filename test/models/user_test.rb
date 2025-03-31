@@ -6,8 +6,10 @@ class UserTest < ActiveSupport::TestCase
     organization = organizations(:one)
     user = users(:one)
 
+    membership_diff = organization.memberships.count * -1
+
     assert_difference "Organization.count", -1 do
-      assert_difference "Membership.count", -1 do
+      assert_difference "Membership.count", membership_diff do
         user.destroy
       end
     end

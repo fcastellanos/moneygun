@@ -1,0 +1,33 @@
+<%= form_with model: @form, url: organization_students_path(@organization), class: "space-y-6" do |f| %>
+  <% if @form.errors.any? %>
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+      <h2 class="font-bold mb-2"><%= pluralize(@form.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul class="list-disc pl-5">
+      <% @form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :first_name, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :last_name, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+  <div class="field">
+    <%= f.label :id_number, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :id_number, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+  <div class="field">
+    <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :email, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  </div>
+<% end %>

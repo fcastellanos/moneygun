@@ -1,0 +1,18 @@
+<div id="<%= dom_id student %>" class="border p-4 rounded-lg flex justify-between items-center">
+  <div class="">
+    <div class="text-lg font-bold">
+      <%= "#{student.user.first_name} #{student.user.last_name}" %>
+    </div>
+    <div class="">
+      <%= student.id_number %>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to "Show", [@organization, student], class: "btn btn-secondary" %>
+    <%= link_to "Edit", edit_organization_student_path(@organization, student), class: "btn btn-secondary" if policy(student).edit? %>
+    <div class="inline-block">
+      <%= button_to "Remove", organization_student_path(@organization, student), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" if policy(student).destroy? %>
+    </div>
+  </div>
+</div>

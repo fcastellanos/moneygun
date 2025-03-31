@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_23_200707) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_27_004209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "academic_periods", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "name"
+    t.string "description"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "current", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_academic_periods_on_organization_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +52,42 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_200707) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.integer "category", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_courses_on_organization_id"
+  end
+
+  create_table "education_levels", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "name"
+    t.integer "level", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_education_levels_on_organization_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.bigint "membership_id", null: false
+    t.integer "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membership_id"], name: "index_employees_on_membership_id"
+  end
+
+  create_table "inboxes", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "organization_id"], name: "index_inboxes_on_name_and_organization_id", unique: true
+    t.index ["organization_id"], name: "index_inboxes_on_organization_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -165,6 +213,30 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_200707) do
     t.index ["organization_id"], name: "index_projects_on_organization_id"
   end
 
+  create_table "school_groups", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.bigint "academic_period_id", null: false
+    t.bigint "education_level_id", null: false
+    t.bigint "employee_id", null: false
+    t.integer "group_type", default: 0, null: false
+    t.integer "grade", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["academic_period_id"], name: "index_school_groups_on_academic_period_id"
+    t.index ["education_level_id"], name: "index_school_groups_on_education_level_id"
+    t.index ["employee_id"], name: "index_school_groups_on_employee_id"
+    t.index ["organization_id", "academic_period_id", "education_level_id", "group_type", "grade"], name: "idx_on_organization_id_academic_period_id_education_2aebee78d4", unique: true
+    t.index ["organization_id"], name: "index_school_groups_on_organization_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.bigint "membership_id", null: false
+    t.string "id_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membership_id"], name: "index_students_on_membership_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -181,6 +253,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_200707) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.string "first_name"
+    t.string "last_name"
     t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
@@ -189,8 +263,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_200707) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "academic_periods", "organizations"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "courses", "organizations"
+  add_foreign_key "education_levels", "organizations"
+  add_foreign_key "employees", "memberships"
   add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "users"
   add_foreign_key "organizations", "users", column: "owner_id"
@@ -199,4 +277,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_200707) do
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
   add_foreign_key "projects", "organizations"
+  add_foreign_key "school_groups", "academic_periods"
+  add_foreign_key "school_groups", "education_levels"
+  add_foreign_key "school_groups", "employees"
+  add_foreign_key "school_groups", "organizations"
+  add_foreign_key "students", "memberships"
 end

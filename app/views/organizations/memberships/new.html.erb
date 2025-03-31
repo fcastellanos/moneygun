@@ -3,6 +3,14 @@
     <%= render "shared/errors", object: form.object %>
 
     <div class="">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, placeholder: "First Name", class: "form-input", autofocus: true, required: true %>
+    </div>
+    <div class="">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, placeholder: "Last Name", class: "form-input", autofocus: true, required: true %>
+    </div>
+    <div class="">
       <%= form.label :email %>
       <%= form.email_field :email,
                            placeholder: "hello@superails.com",
